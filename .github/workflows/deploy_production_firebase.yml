@@ -5,10 +5,10 @@ name: Deploy Production Build To Firebase
 ### MATCH_PASS
 ### FIREBASE_GOOGLE_APPLICATION_CREDENTIALS_BASE64
 
-on:
-  push:
-    branches: [ release/** ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ release/** ]
+#   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
