@@ -1,3 +1,4 @@
+# Check the option: 'Allow GitHub Actions to create and approve pull requests' before using this workflow.
 name: Bump App Version
 
 on:
@@ -7,6 +8,14 @@ on:
         description: "App version (e.g. 1.0.0)"
         required: true
         type: string
+      base_branch:
+        description: "The base branch for the pull request (e.g. develop)"
+        required: false
+        default: develop
+      label:
+        description: "The label for the Release pull request (e.g type : chore)"
+        required: false
+        default: ""
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,7 +32,7 @@ jobs:
     steps:
       - name: Validate version input
         run: |
-          if ! [[ "${{ github.event.inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          if ! [[ "${{ inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "Error: version must follow semantic versioning (e.g., 1.2.3)"
             exit 1
           fi
@@ -33,12 +42,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: chore/bump-app-version-to-${{ github.event.inputs.version }}
+          branch: chore/bump-app-version-to-${{ inputs.version }}
 
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          ref: chore/bump-app-version-to-${{ github.event.inputs.version }}
+          ref: chore/bump-app-version-to-${{ inputs.version }}
 
       - name: Bundle install
         run: bundle install
@@ -46,7 +55,7 @@ jobs:
       - name: Bump app version
         run: bundle exec fastlane bumpAppVersionLane
         env:
-          MANUAL_VERSION: ${{ github.event.inputs.version }}
+          MANUAL_VERSION: ${{ inputs.version }}
 
       - name: Set up Git
         run: |
@@ -56,13 +65,13 @@ jobs:
       - name: Commit and push changes
         run: |
           git add .
-          git commit -m "[Chore] Bump app version to ${{ github.event.inputs.version }}"
+          git commit -m "[Chore] Bump app version to ${{ inputs.version }}"
           git push origin HEAD
 
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ github.event.inputs.version }}
+          VERSION: ${{ inputs.version }}
         run: |
           cat <<EOF > body.md
           ## What happened 👀
@@ -80,7 +89,8 @@ jobs:
           EOF
           gh pr create \
             --draft \
-            --base develop \
+            --base ${{ inputs.base_branch }} \
             --head "chore/bump-app-version-to-${VERSION}" \
+            --label "${{ inputs.label }}" \
             --title "[Chore] Bump app version to ${VERSION}" \
             --body-file body.md
