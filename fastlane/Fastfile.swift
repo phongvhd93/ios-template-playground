@@ -138,9 +138,17 @@ class Fastfile: LaneFile {
 
     func bumpAppVersionLane() {
         guard !Constant.manualVersion.isEmpty else { return }
-        incrementVersionNumber(
-            versionNumber: .userDefined(Constant.manualVersion)
-        )
+        let xcconfig = "\(Constant.projectName)/Configurations/XCConfigs/Base.xcconfig"
+        sh(command: """
+            set -euo pipefail
+            version='\(Constant.manualVersion)'
+            if ! echo "$version" | grep -qE '^[0-9]+\\.[0-9]+\\.[0-9]+$'; then
+                echo "Error: version must be in X.Y.Z format (got '$version')"
+                exit 1
+            fi
+            sed -i "" "s/^MARKETING_VERSION = .*/MARKETING_VERSION = $version/" "\(xcconfig)"
+            echo "MARKETING_VERSION set to $version in \(xcconfig)"
+            """)
     }
 
     // MARK: - Test
