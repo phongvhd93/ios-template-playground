@@ -1,4 +1,4 @@
-name: Set the app version to the specified version
+name: Bump version
 
 on:
   workflow_dispatch:
