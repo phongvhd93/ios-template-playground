@@ -1,6 +1,6 @@
 # AGENTS.md
 
-You are an experienced iOS developer working on **Sample**, a SwiftUI-based iOS application.
+You are an experienced iOS developer working on **iOSTemplate**, a SwiftUI-based iOS application.
 
 Source of truth for iOS conventions: Nimble Compass iOS guide
 `https://nimblehq.co/compass/development/ios/`
@@ -26,16 +26,16 @@ If anything conflicts, prefer:
 Modules/                    → SPM modules
   Domain/                   → Entities, interfaces, use cases (pure Swift)
   Data/                     → Networking, repositories, storage
-Sample/             → App sources
-SampleTests/        → Unit tests (Quick + Nimble)
-SampleKIFUITests/   → KIF UI tests
+iOSTemplate/             → App sources
+iOSTemplateTests/        → Unit tests (Quick + Nimble)
+iOSTemplateKIFUITests/   → KIF UI tests
 fastlane/                   → Fastlane Swift DSL lanes/helpers
 ```
 
 ## Prerequisites
 
 - Xcode (latest stable unless project constraints say otherwise)
-- Ruby + Bundler (for running fastlane via `bundle exec`)
+- Ruby `3.2+` + Bundler (for running fastlane via `bundle exec`)
 - SwiftLint available in your environment
 
 ## Testing expectations
@@ -74,9 +74,9 @@ Key rules:
 - `Domain/` — entities, interfaces, use cases; keep framework-light
 - `Data/` — `NetworkAPI/` (interceptors, models, request configs), `Repositories/`
 
-### `Sample/Sources/`
+### `iOSTemplate/Sources/`
 
-- `Application/` — `SampleApp.swift`, `AppDelegate.swift`
+- `Application/` — `iOSTemplateApp.swift`, `AppDelegate.swift`
 - `Constants/` — `Constants.swift`, `Constants+API.swift`
 - `Presentation/`
   - `Models/`, `Coordinators/`, `Modules/`, `Styles/`, `ViewModifiers/`, `Views/`, `ViewIds/`
@@ -94,21 +94,21 @@ When adding new functionality: introduce a **Domain interface / use case** first
 
 ## Tests
 
-- Unit tests: `SampleTests/` using **Quick + Nimble**
-- UI tests: `SampleKIFUITests/` — grouped as `AccessibilityIdentifiers/`, `Flows/`, `Screens/`, `Specs/`, `Utilities/`
+- Unit tests: `iOSTemplateTests/` using **Quick + Nimble**
+- UI tests: `iOSTemplateKIFUITests/` — grouped as `AccessibilityIdentifiers/`, `Flows/`, `Screens/`, `Specs/`, `Utilities/`
 - Keep tests deterministic; avoid real network calls — use the established `OHHTTPStubs` stubbing approach
 
 ## Build configurations
 
 Four configurations: `Debug Staging`, `Debug Production`, `Release Staging`, `Release Production`.
 
-XCConfig files live in `Sample/Configurations/XCConfigs/`. Compilation flags: `DEBUG`, `STAGING`, `PRODUCTION`.
+XCConfig files live in `iOSTemplate/Configurations/XCConfigs/`. Compilation flags: `DEBUG`, `STAGING`, `PRODUCTION`.
 
 ## Configuration files (where to look)
 
 | File / Path | Purpose |
 |------------|---------|
-| `.mise.toml` | Tool versions (xcbeautify, etc.) |
+| `.mise.toml` | Tool versions (Ruby 3.2, xcbeautify, etc.) |
 | `Package.swift` | SPM dependency declarations |
 | `fastlane/Fastfile.swift` | Lane definitions (Swift DSL) |
 | `fastlane/Constants/Constant.swift` | Project name, bundle IDs, device list, Firebase app IDs |

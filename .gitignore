@@ -43,12 +43,6 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo.
@@ -70,26 +64,19 @@ fastlane/FastlaneRunner
 # Output folder (Derived Data, Build, ipa, etc)
 Output
 
-# Build server
-buildServer.json
-
 # Tuist
 .tuist-generated
+
+# Swift Package Manager
+.build/
+.swiftpm/
 
 # JetBrains IDEs
 
 .idea
-.vscode
+
+# Arkana
+dependencies/
 
 # Environment
 .env
-vendor
-.env.example
-.secrets
-
-# Modules
-Modules/**/*.generated.swift
-ArkanaKeys/**/*
-build/
-.build
-.swiftpm/xcode/xcshareddata/xcschemes

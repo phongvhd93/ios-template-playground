@@ -1,0 +1,32 @@
+name: Deploy Production Build To Firebase
+
+on:
+  push:
+    branches: [ release/** ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          
+      - name: Build and Deploy to Firebase
+        uses: ./.github/actions/build-and-deploy-firebase
+        with:
+          environment: Production
+          build_and_test_lane: buildAndTest
+          code_signing_lane: syncAdHocProductionCodeSigning
+          build_and_upload_lane: buildProductionAndUploadToFirebase
+          tag_type: Production_Firebase
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          match_password: ${{ secrets.MATCH_PASSWORD }}
+          firebase_credentials_base64: ${{ secrets.FIREBASE_CREDENTIALS_BASE64 }}
+          env_file: ${{ secrets.ENV_FILE }}

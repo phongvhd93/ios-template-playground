@@ -12,22 +12,25 @@ enum Constant {
 
     // MARK: - App Store
 
-    static let testFlightTesterGroups = ["<#group1#>", "<#group2#>"]
+    static let testFlightTesterGroups: [String] = []
 
     // MARK: - Firebase
 
-    static let stagingFirebaseAppId = "<#stagingFirebaseAppId#>"
-    static let productionFirebaseAppId = "<#productionFirebaseAppId#>"
-    static let firebaseTesterGroups = "<#group1#>, <#group2#>"
+    static let devFirebaseAppId = "1:663051039370:ios:41cc053ccc1c39f8d5f373"
+    static let stagingFirebaseAppId = "1:663051039370:ios:41cc053ccc1c39f8d5f373"
+    static let productionFirebaseAppId = "1:663051039370:ios:41cc053ccc1c39f8d5f373"
+    static let firebaseTesterGroups = ""
 
     // MARK: - Match
 
-    static let appleStagingUserName = "<#userName#>"
-    static let appleStagingTeamId = "<#teamId#>"
-    static let appleProductionUserName = "<#userName#>"
-    static let appleProductionTeamId = "<#teamId#>"
-    static let keychainName = "Sample_keychain"
-    static let matchURL = "git@github.com:{organization}/{repo}.git"
+    static let appleDevUserName = ""
+    static let appleDevTeamId = "4TWS7E2EPE"
+    static let appleStagingUserName = ""
+    static let appleStagingTeamId = "4TWS7E2EPE"
+    static let appleProductionUserName = ""
+    static let appleProductionTeamId = "4TWS7E2EPE"
+    static let keychainName = "iOSTemplate_keychain"
+    static let matchURL = "git@github.com:nimblehq/match-certificates.git"
     static let apiKey: [String: Any] = {
         var key = Secret.appstoreConnectAPIKey
         if let data = Data(base64Encoded: Secret.appstoreConnectAPIKey),
@@ -71,9 +74,10 @@ enum Constant {
 
     // MARK: - Project
 
+    static let devBundleId = "co.nimblehq.ios.templates.dev"
     static let stagingBundleId = "co.nimblehq.ios.templates.staging"
     static let productionBundleId = "co.nimblehq.ios.templates"
-    static let projectName = "Sample"
+    static let projectName = "iOSTemplate"
 
     // MARK: - Symbol
 
@@ -82,7 +86,7 @@ enum Constant {
 
     // MARK: - Build and Version
 
-    static let manualVersion: String = EnvironmentParser.string(key: "MANUAL_VERSION")
+    static let manualVersion: String = ""
 
     // MARK: - Device
 
@@ -93,6 +97,7 @@ extension Constant {
 
     enum Environment: String {
 
+        case dev = "Dev"
         case staging = "Staging"
         case production = "Production"
 
@@ -100,13 +105,14 @@ extension Constant {
 
         var scheme: String {
             switch self {
-            case .staging: return "\(Constant.projectName) \(rawValue)".trimmed
+            case .dev, .staging: return "\(Constant.projectName) \(rawValue)".trimmed
             case .production: return Constant.projectName.trimmed
             }
         }
 
         var bundleId: String {
             switch self {
+            case .dev: return Constant.devBundleId
             case .staging: return Constant.stagingBundleId
             case .production: return Constant.productionBundleId
             }
@@ -114,6 +120,7 @@ extension Constant {
 
         var firebaseAppId: String {
             switch self {
+            case .dev: return Constant.devFirebaseAppId
             case .staging: return Constant.stagingFirebaseAppId
             case .production: return Constant.productionFirebaseAppId
             }
@@ -123,6 +130,7 @@ extension Constant {
             let infoName = "GoogleService-Info.plist"
             let googleServiceFolder = "./\(Constant.projectName)/Configurations/Plists/GoogleService"
             switch self {
+            case .dev: return "\(googleServiceFolder)/Dev/\(infoName)"
             case .staging: return "\(googleServiceFolder)/Staging/\(infoName)"
             case .production: return "\(googleServiceFolder)/Production/\(infoName)"
             }
@@ -135,6 +143,7 @@ extension Constant {
 
         var appleUsername: String {
             switch self {
+            case .dev: return Constant.appleDevUserName
             case .staging: return Constant.appleStagingUserName
             case .production: return Constant.appleProductionUserName
             }
@@ -142,6 +151,7 @@ extension Constant {
 
         var appleTeamId: String {
             switch self {
+            case .dev: return Constant.appleDevTeamId
             case .staging: return Constant.appleStagingTeamId
             case .production: return Constant.appleProductionTeamId
             }

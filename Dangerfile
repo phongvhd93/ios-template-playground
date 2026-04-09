@@ -21,9 +21,9 @@ swiftlint.lint_files(
   additional_swiftlint_args: '--strict'
 )
 
-xcodeproj = "./Sample.xcodeproj"
-xcresultPath = "./fastlane/test_output/Sample Staging.xcresult"
-scheme = "Sample Staging"
+xcodeproj = "./iOSTemplate.xcodeproj"
+xcresultPath = "./fastlane/test_output/iOSTemplate Staging.xcresult"
+scheme = "iOSTemplate Staging"
 xcovOutputDirectory = "./fastlane/xcov_output"
 
 # Xcode summary
