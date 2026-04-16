@@ -168,6 +168,12 @@ class Fastfile: LaneFile {
 
     func buildAndTestLane() {
         desc("Build and Test project")
+        
+        guard testTargetCount() > 0 else {
+            echo(message: " 🚨 Nothing to test")
+            return
+        }
+
         Test.buildAndTest(
             environment: .staging,
             devices: Constant.devices
@@ -245,6 +251,15 @@ class Fastfile: LaneFile {
             buildNumber: .userDefined(String(buildNumber)),
             xcodeproj: .userDefined(Constant.projectPath)
         )
+    }
+
+    private func testTargetCount(in testPlanPath: String = "iOSTemplate.xctestplan") -> Int {
+        guard let data = FileManager.default.contents(atPath: testPlanPath),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let testTargets = json?["testTargets"] as? [Any] else {
+            return 0
+        }
+        return testTargets.count
     }
 
     private func bumpAppstoreBuild() {
