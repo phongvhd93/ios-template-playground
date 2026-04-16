@@ -46,7 +46,7 @@ jobs:
       run: bundle exec arkana
     
     - name: Modify test plan
-      run: mint run mikeger/XcodeSelectiveTesting@0.14.2 iOSTemplate.xcodeproj --test-plan iOSTemplate.xctestplan
+      run: mint run mikeger/XcodeSelectiveTesting@0.14.2 iOSTemplate.xcodeproj --test-plan iOSTemplate.xctestplan --base-branch $GITHUB_BASE_REF
 
     - name: Build and Test
       run: bundle exec fastlane buildAndTest
