@@ -44,14 +44,14 @@ jobs:
 
     - name: Run Arkana
       run: bundle exec arkana
-
-    # - name: Build and Test
-    #   run: bundle exec fastlane buildAndTest
-    #   env:
-    #     CI: true
-
-    - name: Run test
+    
+    - name: Modify test plan
       run: mint run mikeger/XcodeSelectiveTesting@0.14.2 iOSTemplate.xcodeproj --test-plan iOSTemplate.xctestplan
+
+    - name: Build and Test
+      run: bundle exec fastlane buildAndTest
+      env:
+        CI: true
 
     - name: Clean up previous code coverage report
       run: bundle exec fastlane cleanUpOutput

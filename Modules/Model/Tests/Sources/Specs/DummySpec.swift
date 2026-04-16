@@ -9,7 +9,7 @@ final class DummySpec: QuickSpec {
 
     override class func spec() {
 
-        describe("A Dummy") {
+        describe("A Dummy Model Test") {
 
             context("given a dummy message") {
                 let message = "Hello"
