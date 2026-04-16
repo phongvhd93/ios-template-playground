@@ -1,6 +1,7 @@
 name: Automatic pull request review
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, reopened, edited, synchronize]
 
