@@ -1,0 +1,13 @@
+[
+  {
+    "artifactProviderID": "gha",
+    "artifactProviderParameters": {
+      "owner": "phongvhd93",
+      "repo": "ios-template-playground",
+      "artifact_id": "6342578172"
+    },
+    "launchArguments": [],
+    "platformHint": "ios",
+    "destinationHint": null
+  }
+]

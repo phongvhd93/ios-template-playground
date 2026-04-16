@@ -3,6 +3,7 @@
 //
 
 import FactoryKit
+import Foundation
 import Nimble
 import Quick
 
@@ -75,8 +76,7 @@ final class SessionRepositorySpec: AsyncSpec {
                         let tokenSet = TokenSet(
                             accessToken: "test-access-token",
                             refreshToken: "test-refresh-token",
-                            expiresAt: expiresAt,
-                            tokenType: "Bearer"
+                            expiresAt: expiresAt
                         )
                         try await repository.save(tokenSet: tokenSet)
                     }
