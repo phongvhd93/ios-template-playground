@@ -47,7 +47,7 @@ jobs:
     
     - name: Modify test plan
       run: |
-        mint run mikeger/XcodeSelectiveTesting@1c0927e5553a9ddb6b3634d6d13497651a0ef476 iOSTemplate.xcodeproj \
+        mise exec -- xcode-selective-test iOSTemplate.xcodeproj \
         --test-plan iOSTemplate.xctestplan \
         --base-branch origin/${{ github.base_ref }}
 
