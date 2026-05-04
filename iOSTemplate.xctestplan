@@ -15,28 +15,28 @@
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
-        "identifier" : "0696E11E0032C9D04C1E1440",
+        "identifier" : "PLACEHOLDER",
         "name" : "DomainTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
-        "identifier" : "2A5CC6B931B58732C361B3AD",
+        "identifier" : "PLACEHOLDER",
         "name" : "iOSTemplateTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
-        "identifier" : "94D2F3A1FE64DFC025D04284",
+        "identifier" : "PLACEHOLDER",
         "name" : "DataTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
-        "identifier" : "D1A98EF95EAE7889383851B9",
+        "identifier" : "PLACEHOLDER",
         "name" : "ModelTests"
       }
     }
