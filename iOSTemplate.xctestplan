@@ -15,24 +15,28 @@
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
+        "identifier" : "PLACEHOLDER",
         "name" : "DomainTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
+        "identifier" : "PLACEHOLDER",
         "name" : "iOSTemplateTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
+        "identifier" : "PLACEHOLDER",
         "name" : "DataTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:iOSTemplate.xcodeproj",
+        "identifier" : "PLACEHOLDER",
         "name" : "ModelTests"
       }
     }
