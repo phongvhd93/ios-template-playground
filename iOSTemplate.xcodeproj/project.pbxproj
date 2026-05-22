@@ -269,6 +269,7 @@
 		28C8FA568ED35A9BC5C0E243 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		29B7A11E6A6D29733347332E /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		2D240F3F40628BC111D39217 /* NetworkAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIProtocol.swift; sourceTree = "<group>"; };
+		310971D82F9097980077FCBE /* iOSTemplate.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = iOSTemplate.xctestplan; sourceTree = "<group>"; };
 		316F33FED75AE997F750065B /* DebugDev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DebugDev.xcconfig; sourceTree = "<group>"; };
 		31D2E1F22F874C3300C10896 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		339465A2695984D55EAC59DA /* DefaultFeatureFlagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFeatureFlagRepository.swift; sourceTree = "<group>"; };
@@ -541,6 +542,7 @@
 		29A9ABE265C3BAD52003DC07 = {
 			isa = PBXGroup;
 			children = (
+				310971D82F9097980077FCBE /* iOSTemplate.xctestplan */,
 				03E498B68F89585EE69E5B08 /* Products */,
 				A7E12B2E6B3AE2133E3D0AEE /* Project */,
 			);
