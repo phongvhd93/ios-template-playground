@@ -18,6 +18,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    # - name: Setup Mint
+    #   uses: irgaly/setup-mint@8566ee44b3a79d20642d1924db21c8ab0402859f # irgaly/setup-mint@v1
+
     - uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # actions/cache@v5.0.4
       id: bundlerCache
       with:
@@ -41,6 +44,9 @@ jobs:
 
     - name: Run Arkana
       run: bundle exec arkana
+    
+    - name: Modify test plan
+      run: mint run mikeger/XcodeSelectiveTesting@0.14.2 iOSTemplate.xcodeproj --test-plan iOSTemplate.xctestplan --base-branch origin/${{ github.base_ref }}
 
     - name: Build and Test
       run: bundle exec fastlane buildAndTest
